@@ -11,7 +11,7 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getUsuarios(since): Observable<any> {
-    return this.http.get(environment.api + 'users?since=' + since + '&per_page=25', { observe: 'response' });
+    return this.http.get(environment.api + 'users?since=' + since);
   }
   getUsuario(userName: string): Observable<any> {
     return this.http.get(environment.api + 'users/' + userName);
