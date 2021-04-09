@@ -1,19 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map, tap, pluck } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Users, UsersAPI } from '../_interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  getUsuarios(since): Observable<any> {
-    return this.http.get(environment.api + 'users?since=' + since);
+  getUsers(nameValue?: string): Observable<any> {
+
+    let paramsDefault = new HttpParams().append('per_page', '9');
+    let users = nameValue ? 'users/'+ nameValue : 'users';
+    return this.httpClient.get<UsersAPI>(environment.api + users, {params: paramsDefault})
+      .pipe(
+        tap((v) => console.log(v))
+      )
   }
-  getUsuario(userName: string): Observable<any> {
-    return this.http.get(environment.api + 'users/' + userName);
+  getUser(userName: string): Observable<any> {
+    return this.httpClient.get(environment.api + 'users/' + userName);
   }
 }

@@ -1,1 +1,14 @@
-<p>home works!</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Legacy form field</mat-label>
+    <input matInput placeholder="Placeholder" [formControl]="usersInput" />
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field>
+</p>
+<div >
+  <div *ngIf="users$ | async as users">
+    <div *ngFor="let user of users">
+      <h1>{{ user.name || user.login }}</h1>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { HomeComponent } from './home/home.component';
 import { ReposComponent } from './repos/repos.component';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -16,6 +20,10 @@ import { ReposComponent } from './repos/repos.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatFormFieldModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatInputModule,
     StoreModule.forRoot({}, {})
   ],
   providers: [],
