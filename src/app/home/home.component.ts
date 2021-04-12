@@ -13,8 +13,14 @@ export class HomeComponent {
   usersInput = new FormControl();
   allUsers$ = this.usersService.getUsers();
   inputFilter$ = this.usersInput.valueChanges.pipe(
-    filter((value)=> value.length >= 4 || !value.length),
-    switchMap((value)=> this.usersService.getUsers(value)),
+    filter((value) => value.length >= 4 || !value.length),
+    switchMap((value) => {
+      try {
+        return this.usersService.getUsers(value)
+      } catch (error) {
+        return this.usersService.getUsers()
+      }
+     }),
     map((value) => typeof value == "object" ? [value] : value)
   )
   users$ = merge(this.allUsers$, this.inputFilter$)

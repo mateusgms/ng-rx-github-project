@@ -9,7 +9,9 @@ import { ReposComponent } from './repos/repos.component';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatCardModule } from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import {MatInputModule} from '@angular/material/input';
     HttpClientModule,
     ReactiveFormsModule,
     MatInputModule,
+    FlexLayoutModule,
+    MatCardModule,
     StoreModule.forRoot({}, {})
   ],
   providers: [],
