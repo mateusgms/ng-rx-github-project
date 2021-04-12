@@ -1,4 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #00b09b;
+  background: -webkit-linear-gradient(to right, #96c93d, #00b09b);
+  background: linear-gradient(to right, #96c93d, #00b09b);
+    color: beige;
+}
+mat-form-field.mat-form-field{
+    color: white;
+}
+.mat-form-field-hide-placeholder .mat-input-element::placeholder{
+  color: white!important
+}

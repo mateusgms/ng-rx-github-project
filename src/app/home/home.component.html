@@ -1,40 +1,31 @@
 <div fxLayout="column" fxLayoutAlign="center center">
-  <h1>Find your favorite repository</h1>
-  <mat-form-field appearance="legacy" >
-    <mat-label>Legacy form field</mat-label>
-    <input matInput placeholder="Placeholder" [formControl]="usersInput" />
-    <mat-hint>Hint</mat-hint>
+  <h1>Find your User repository</h1>
+  <hr>
+  <mat-form-field hintLabel="Min 4 characters" appearance="outline">
+    <mat-label>UserName</mat-label>
+    <input matInput #inputUser maxlength="10" placeholder="Placeholder" [formControl]="usersInput" />
+    <mat-hint align="end">{{inputUser.value?.length || 0}}/4</mat-hint>
   </mat-form-field>
-</div>
-<div>
-  <div
-    fxLayout="row wrap"
-    fxLayout.lt-sm="column"
-    fxLayoutGap="32px"
-    fxLayoutAlign="space-evenly "
-    *ngIf="users$ | async as users"
-  >
-    <div *ngFor="let user of users"    class="example-card"
-    fxFlex="0 1 calc(33.3% - 32px)"
-    fxFlex.lt-md="0 1 calc(50% - 32px)"
-    fxFlex.lt-sm="100%">
-      <mat-card gdGap="20px 30px" class="m-5">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{ user.name || user.login }}</mat-card-title>
-          <mat-card-subtitle>{{ user.repos_url }}</mat-card-subtitle>
-        </mat-card-header>
-        <img
-          mat-card-image
-          src="{{ user.avatar_url }}"
-          alt="Photo of a Shiba Inu"
-        />
+  <div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-evenly center "
+      *ngIf="users$ | async as users; else elseBlock">
+      <div *ngFor="let user of users" class="example-card" fxFlex="0 1 calc(33.3% - 32px)"
+        fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+        <mat-card class="">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ user.name || user.login || 'No User login' }}</mat-card-title>
+            <mat-card-subtitle>{{ user.repos_url }}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{ user.avatar_url || 'https://avatars.githubusercontent.com/u/583231?v=4' }}" alt="Photo of a Shiba Inu" />
 
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
-      </mat-card>
+          <mat-card-actions fxLayout="row" fxLayoutAlign="space-around none">
+            <button mat-raised-button color="primary">Profile</button>
+            <button mat-raised-button color="accent">Repositories</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
     </div>
+    <h1 #elseBlock fxLayout="row wrap" fxLayoutAlign="space-evenly center" color="white">User not Found or Api rate limite </h1>
   </div>
 </div>

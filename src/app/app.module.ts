@@ -12,12 +12,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from "@angular/material/card";
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import { UserProfileComponent } from './home/_dialogs/user-profile/user-profile.component';
+import { UserReposComponent } from './home/_dialogs/user-repos/user-repos.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ReposComponent
+    ReposComponent,
+    UserProfileComponent,
+    UserReposComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +34,8 @@ import { MatCardModule } from "@angular/material/card";
     MatInputModule,
     FlexLayoutModule,
     MatCardModule,
+    MatButtonModule,
+    MatDialogModule,
     StoreModule.forRoot({}, {})
   ],
   providers: [],
