@@ -1,1 +1,20 @@
-<p>user-profile works!</p>
+<div
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  *ngIf="user$ | async as user"
+>
+  <img
+    src="{{
+      user.avatar_url || 'https://avatars.githubusercontent.com/u/583231?v=4'
+    }}"
+    width="90vw"
+  />
+  <h1>{{ user.login }}</h1>
+  <p>Location: {{ user.location }}</p>
+  <p>Companies: {{ user.company }}</p>
+  <p>
+    <strong>{{ user.bio || "no bio" }}</strong>
+  </p>
+  <p>Followers {{ user.followers }}</p>
+  <p>Repositories: {{ user.public_repos }}</p>
+</div>

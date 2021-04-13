@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, tap, pluck, catchError } from 'rxjs/operators';
+import { map, tap, pluck } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Users, UsersAPI } from '../_interfaces/user';
@@ -14,10 +14,10 @@ export class UsersService {
 
   getUsers(nameValue?: string): Observable<any> {
 
-    let paramsDefault = new HttpParams().append('per_page', '30');
-    let users = nameValue ? 'users/'+ nameValue : 'users';
-    return this.httpClient.get<UsersAPI>(environment.api + users, {params: paramsDefault})
-      .pipe(catchError(async (err) => console.error(err)),
+    let paramsDefault = new HttpParams().append('per_page', '9');
+    let users = nameValue ? 'users/' + nameValue : 'users';
+    return this.httpClient.get<UsersAPI>(environment.api + users, { params: paramsDefault })
+      .pipe(
         tap((v) => console.log(v))
       )
   }

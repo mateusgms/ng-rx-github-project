@@ -1,31 +1,68 @@
 <div fxLayout="column" fxLayoutAlign="center center">
   <h1>Find your User repository</h1>
-  <hr>
+  <hr />
   <mat-form-field hintLabel="Min 4 characters" appearance="outline">
     <mat-label>UserName</mat-label>
-    <input matInput #inputUser maxlength="10" placeholder="Placeholder" [formControl]="usersInput" />
-    <mat-hint align="end">{{inputUser.value?.length || 0}}/4</mat-hint>
+    <input
+      matInput
+      #inputUser
+      maxlength="10"
+      placeholder="Placeholder"
+      [formControl]="usersInput"
+    />
+    <mat-hint align="end">{{ inputUser.value?.length || 0 }}/4</mat-hint>
   </mat-form-field>
   <div>
-    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-evenly center "
-      *ngIf="users$ | async as users; else elseBlock">
-      <div *ngFor="let user of users" class="example-card" fxFlex="0 1 calc(33.3% - 32px)"
-        fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+    <div
+      fxLayout="row wrap"
+      fxLayout.lt-sm="column"
+      fxLayoutAlign="space-evenly center "
+      *ngIf="users$ | async as users; else elseBlock"
+    >
+      <div
+        *ngFor="let user of users"
+        class="example-card"
+        fxFlex="0 1 calc(33.3% - 32px)"
+        fxFlex.lt-md="0 1 calc(50% - 32px)"
+        fxFlex.lt-sm="100%"
+      >
         <mat-card class="">
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{ user.name || user.login || 'No User login' }}</mat-card-title>
+            <mat-card-title>{{
+              user.name || user.login || "No User login"
+            }}</mat-card-title>
             <mat-card-subtitle>{{ user.repos_url }}</mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-image src="{{ user.avatar_url || 'https://avatars.githubusercontent.com/u/583231?v=4' }}" alt="Photo of a Shiba Inu" />
-
+          <img
+            mat-card-image
+            src="{{
+              user.avatar_url ||
+                'https://avatars.githubusercontent.com/u/583231?v=4'
+            }}"
+            alt="Photo of a Shiba Inu"
+          />
           <mat-card-actions fxLayout="row" fxLayoutAlign="space-around none">
-            <button mat-raised-button color="primary">Profile</button>
-            <button mat-raised-button color="accent">Repositories</button>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="openUserProfile(user.login)"
+            >
+              Profile
+            </button>
+            <button
+              mat-raised-button
+              color="accent"
+              (click)="openUserRepos(user.login)"
+            >
+              Repositories
+            </button>
           </mat-card-actions>
         </mat-card>
       </div>
     </div>
-    <h1 #elseBlock fxLayout="row wrap" fxLayoutAlign="space-evenly center" color="white">User not Found or Api rate limite </h1>
+    <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" color="white">
+      <h1 #elseBlock>User not Found or Api rate limite</h1>
+    </div>
   </div>
 </div>
